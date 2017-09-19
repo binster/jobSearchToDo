@@ -187,6 +187,7 @@
     <Compile Include="Services\ToDoService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.min.js" />
     <Content Include="Webpage\Content\ToDo.css" />
     <Content Include="Webpage\Content\toDo.js" />
     <Content Include="Webpage\CSS\bootstrap-theme.css" />

@@ -28,7 +28,7 @@
         };
 
         function _addNewTask() {
-            if (vm.data.task) {
+            if (vm.data.Task) {
                 vm.showTable = false;
             } else {
                 console.log("put in a Task Name");
