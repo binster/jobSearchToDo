@@ -6,43 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>To Finish</title>
     <!--Bootstrap css-->
-    <link href="/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Hello, world!</h1>
+    <div ng-app="toDoApp">
+        <div class="container col-sm-8 col-sm-offset-2">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h1>Get Stuff Done</h1>
+            </div>
+            <div ng-controller="toDoController as td">
 
+                <div class="row addTask">
+                    <div class="col-sm-9">
+                        <form>
+                            <input type="text" class="form-control col-sm-6" ng-model="td.data.Task" placeholder="enter a new task" />
+                        </form>
+                    </div>
+                    <button type="button" class="btn btn-primary col-sm-2" ng-click="td.addNewTask()">Add Task &nbsp;<i class="glyphicon glyphicon-plus"></i></button>
+                </div>
 
+                <div ng-if="!td.showTable">
+                    <div>
+                        <form>
+                            <label>Reason</label>
+                            <input type="text" class="form-control" ng-model="td.data.Reason" placeholder="Is there a reason for this task?"/>
+                            <label>Resources</label>
+                            <input type="text" class="form-control" ng-model="td.data.Resources" placeholder="Any websites to look at?" />
+                            <label>Priority Level</label>
+                            <select class="form-control" ng-model="td.data.Priority">
+                                <option value="" selected disabled hidden>Please Select a Priority Level</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <label>Scheduled For</label>
+                            <input type="text" class="form-control" ng-model="td.data.DueBy" placeholder="When is this due by?" />
+                        </form>
+                    </div>
+                </div>
 
-
-
-
-
-
-
-
-
-
-
-
+                <div>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Task</th>
+                            <th>Reason</th>
+                            <th>Resources</th>
+                            <th>Priority</th>
+                            <th>Finish By</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="task in td.taskList">
+                            <td>{{task.Task}}</td>
+                            <td>{{task.Reason}}</td>
+                            <td>{{task.Resources}}</td>
+                            <td>{{task.Priority}}</td>
+                            <td>{{task.DueBy}}</td>
+                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                            <td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></td>
+                        </tr>
+                    </table>
+                </div>
+                <pre>{{td|json}}</pre>
+            </div>
+        </div>
+    </div>
     <!-- jQuery-->
-    <script src="/Scripts/jquery-3.2.1.min.js"></script>
-
+    <script src="../../Scripts/jquery-3.2.1.min.js"></script>
     <!--AngularJS-->
-    <script src="/Scripts/angular.min.js"></script>
-
+    <script src="../../Scripts/angular.min.js"></script>
     <!-- Plugins-->
-    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
 
     <!-- All your code goes below here-->
     <script type="text/javascript">
 
         //Instantiate the app
         (function () {
+            "use strict";
             angular.module("toDoApp", []);
         })();
 
-
     </script>
+
+    <script src="toDo.js"></script>
 
 </body>
 </html>

@@ -50,8 +50,7 @@ namespace ToDoApp.Web.Services
                     }
                     return scheduleList;
                 }
-            }
-            
+            }         
         }
 
         //Select Task by Id

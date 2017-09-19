@@ -187,27 +187,29 @@
     <Compile Include="Services\ToDoService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Webpage\Content\ToDo.css" />
+    <Content Include="Webpage\Content\toDo.js" />
     <Content Include="Webpage\CSS\bootstrap-theme.css" />
     <Content Include="Webpage\CSS\bootstrap-theme.min.css" />
     <Content Include="Webpage\CSS\bootstrap.css" />
     <Content Include="Webpage\CSS\bootstrap.min.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Webpage\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Webpage\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Webpage\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Webpage\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Webpage\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Webpage\CSS\bootstrap.min.css.map" />
     <Content Include="Webpage\CSS\bootstrap.css.map" />
     <Content Include="Webpage\CSS\bootstrap-theme.min.css.map" />
     <Content Include="Webpage\CSS\bootstrap-theme.css.map" />
-    <None Include="Webpage\Scripts\jquery-3.2.1.intellisense.js" />
-    <Content Include="Webpage\Scripts\angular.min.js" />
-    <Content Include="Webpage\Scripts\bootstrap.js" />
-    <Content Include="Webpage\Scripts\bootstrap.min.js" />
-    <Content Include="Webpage\Scripts\jquery-3.2.1.js" />
-    <Content Include="Webpage\Scripts\jquery-3.2.1.min.js" />
-    <Content Include="Webpage\Scripts\jquery-3.2.1.slim.js" />
-    <Content Include="Webpage\Scripts\jquery-3.2.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <Content Include=".gitignore" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -215,8 +217,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Webpage\Scripts\jquery-3.2.1.slim.min.map" />
-    <Content Include="Webpage\Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
