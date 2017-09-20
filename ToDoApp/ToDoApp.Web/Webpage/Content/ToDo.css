@@ -1,3 +1,19 @@
 ﻿.addTask{
     margin: 5px;
 }
+
+.addForm {
+    margin:10px;
+}
+
+.addNewTask {
+    background-color:aquamarine !Important;
+}
+
+.addNewTask:hover{
+    background-color: aqua !important;
+}
+
+.submitBtn {
+    margin-top: 15px;
+}

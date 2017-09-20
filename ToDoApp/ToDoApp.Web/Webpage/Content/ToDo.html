@@ -7,6 +7,7 @@
     <title>To Finish</title>
     <!--Bootstrap css-->
     <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="ToDo.css" rel="stylesheet" />
 </head>
 <body>
     <div ng-app="toDoApp">
@@ -15,36 +16,38 @@
                 <h1>Get Stuff Done</h1>
             </div>
             <div ng-controller="toDoController as td">
-
-                <div class="row addTask">
-                    <div class="col-sm-9">
-                        <form>
-                            <input type="text" class="form-control col-sm-6" ng-model="td.data.Task" placeholder="enter a new task" />
-                        </form>
+                <div class="addForm">
+                    <div class="row addTask">
+                        <div class="col-sm-6">
+                            <form>
+                                <input type="text" class="form-control col-sm-6" ng-model="td.data.Task" placeholder="enter a new task" />
+                            </form>
+                        </div>
+                        <button type="button" class="btn btn-primary col-sm-2" ng-click="td.addNewTask()" ng-class="{addNewTask: vm.isNewTask}">{{vm.data.Task ? "Add Task" : "New Task"}} &nbsp;<i class="glyphicon glyphicon-plus"></i></button>
+                        <button type="button" class="btn btn-danger col-sm-2 col-sm-offset-1 clearButton" ng-click="td.clearTask()">Clear</button>
                     </div>
-                    <button type="button" class="btn btn-primary col-sm-2" ng-click="td.addNewTask()">Add Task &nbsp;<i class="glyphicon glyphicon-plus"></i></button>
-                </div>
 
-                <div ng-if="!td.showTable">
-                    <div>
-                        <form>
-                            <label>Reason</label>
-                            <input type="text" class="form-control" ng-model="td.data.Reason" placeholder="Is there a reason for this task?"/>
-                            <label>Resources</label>
-                            <input type="text" class="form-control" ng-model="td.data.Resources" placeholder="Any websites to look at?" />
-                            <label>Priority Level</label>
-                            <select class="form-control" ng-model="td.data.Priority">
-                                <option value="" selected disabled hidden>Please Select a Priority Level</option>
-                                <option value="1">Low</option>
-                                <option value="2">Medium</option>
-                                <option value="3">High</option>
-                            </select>
-                            <label>Scheduled For</label>
-                            <input type="text" class="form-control" ng-model="td.data.DueBy" placeholder="When is this due by?" />
-                        </form>
+                    <div ng-if="td.showForm">
+                        <div>
+                            <form name="taskForm">
+                                <label>Reason</label>
+                                <input type="text" class="form-control" ng-model="td.data.Reason" placeholder="Is there a reason for this task?" />
+                                <label>Resources</label>
+                                <input type="text" class="form-control" ng-model="td.data.Resources" placeholder="Any websites to look at?" />
+                                <label>Priority Level</label>
+                                <select class="form-control" ng-model="td.data.Priority" required>
+                                    <option value="" selected disabled hidden>Please Select a Priority Level</option>
+                                    <option value="1">Low</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">High</option>
+                                </select>
+                                <label>Scheduled For</label>
+                                <input type="text" class="form-control" ng-model="td.data.DueBy" placeholder="When is this due by?" />
+                            </form>                          
+                        </div>
+                        <button type="button" class="btn btn-block btn-success submitBtn" ng-click="td.submitTask()">Submit</button>
                     </div>
                 </div>
-
                 <div>
                     <table class="table table-striped">
                         <tr>
@@ -63,9 +66,12 @@
                             <td>{{task.Priority}}</td>
                             <td>{{task.DueBy}}</td>
                             <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></td>
-                            <td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></td>
+                            <td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" ng-click="td.deleteTask(task.Id)"></span></button></td>
                         </tr>
                     </table>
+                </div>
+                <div>
+                    {{td.statusMessage}}
                 </div>
                 <pre>{{td|json}}</pre>
             </div>
