@@ -10,5 +10,6 @@ namespace ToDoApp.Web.Services.Interfaces
         ScheduleItem GetTaskById(int id);
         int ScheduleNewTask(ScheduleTask model);
         void UpdateTask(ScheduleTaskWithId model);
+        void DeleteTask(int id);
     }
 }

@@ -22,6 +22,7 @@
         vm.$onInit = _init;
         vm.addNewTask = _addNewTask;
         vm.submitTask = _submitTask;
+        vm.editTask = _editTask;
         vm.deleteTask = _deleteTask;
         vm.clearTask = _clearTask;
 
@@ -46,12 +47,24 @@
                 if (!vm.data.DueBy) {
                     vm.data.DueBy = null;
                 }
-                toDoService.postTask(vm.data).then(_postSuccess, _postFail);
+                toDoService.postTask(vm.data)
+                    .then(_postSuccess, _postFail);
             }
         }
 
-        function _deleteTask(taskId) {
+        function _editTask(index, task) {
+            console.log(index + " " + task);
+            vm.index = index;
+            vm.data = task;
+            vm.showForm = true;
+
+        }
+
+        function _deleteTask(index, taskId) {
             console.log(taskId);
+            vm.index = index;
+            toDoService.deleteTask(taskId)
+                .then(_deleteSuccess, _deleteFail);
         }
 
         function _clearTask() {
@@ -84,12 +97,23 @@
             vm.statusMessage = "there was an error in the database";
         }
 
+        function _deleteSuccess(response) {
+            console.log(response);
+            vm.taskList.splice(vm.index, 1);
+            vm.index = -1;
+            vm.statusMessage = "successful removal of task";        
+        }
 
+        function _deleteFail(response) {
+            console.log(response);
+            vm.statusMessage = "delete failed";
+        }
     }
     //things to add : form validation
     //toastr or popup to user to ensure successful call
     //fewer buttons
     //order by date/priority
+    //when making form, priority is a string when edit mode its an int
 })();
 
 //Services
@@ -105,6 +129,7 @@
         //service functions
         this.getAllTasks = _getAllTasks;
         this.postTask = _postTask;
+        this.deleteTask = _deleteTask;
 
         //function definitions
 
@@ -128,6 +153,17 @@
                 contentType: "application/json",
                 data : taskData
             }
+            return $http(settings);
+        }
+
+        //delete Task
+        function _deleteTask(taskId) {
+            var settings = {
+                url: "/api/toDo/" + encodeURI(taskId),
+                method: "DELETE",
+                cache: false,
+                responseType: "json"
+            };
             return $http(settings);
         }
     }

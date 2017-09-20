@@ -76,6 +76,7 @@ namespace ToDoApp.Web.Controllers
         [Route("{id:int}"), HttpDelete]
         public HttpResponseMessage DeleteTask(int id)
         {
+            toDoService.DeleteTask(id);
             SuccessResponse response = new SuccessResponse();
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }

@@ -65,8 +65,8 @@
                             <td>{{task.Resources}}</td>
                             <td>{{task.Priority}}</td>
                             <td>{{task.DueBy}}</td>
-                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></td>
-                            <td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" ng-click="td.deleteTask(task.Id)"></span></button></td>
+                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" ng-click="td.editTask($index, task)"></span></button></td>
+                            <td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" ng-click="td.deleteTask($index,task.Id)"></span></button></td>
                         </tr>
                     </table>
                 </div>
