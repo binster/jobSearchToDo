@@ -82,9 +82,11 @@
                     {{td.statusMessage}}
                 </div>
                 <div>
-                    <div ng-repeat="link in td.linkList">
-                        <a class="row" ng-href="{{link.LinkUrl.indexOf('/r/') > -1 ? 'https://www.reddit.com' + link.LinkUrl : link.LinkUrl }}">{{link.LinkTitle}}</a>
-                    </div>
+                    <ul>
+                        <li ng-repeat="link in td.linkList">
+                            <a ng-href="{{link.LinkUrl.indexOf('/r/') > -1 ? 'https://www.reddit.com' + link.LinkUrl : link.LinkUrl }}">{{link.LinkTitle}}</a>
+                        </li>
+                    </ul>
                 </div>
                 <!--<pre>{{td|json}}</pre>-->
             </div>
