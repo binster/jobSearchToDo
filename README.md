@@ -1,5 +1,5 @@
 # toDo
 Simple to-do list
 
-## Includes simple web-scrape method using AngleSharp
+## Includes simple web-scrape tool using AngleSharp
 Just click show inspiration to get some links
