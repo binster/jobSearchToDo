@@ -13,10 +13,10 @@
     <div ng-app="toDoApp">
         <div class="container col-sm-8 col-sm-offset-2">
             <div class="col-sm-8 col-sm-offset-2">
-                <h1>Get Stuff Done</h1>
+                <h1 class="text-center">Get Stuff Done</h1>
             </div>
             <div ng-controller="toDoController as td">
-                <div class="addForm">
+                <div class="addForm col-sm-12">
                     <div class="addTask">
                         <div class="input-group">
                             <input type="text" class="form-control col-sm-6" ng-model="td.data.Task" placeholder="enter a new task" />
@@ -70,18 +70,23 @@
                             <td>{{task.Task}}</td>
                             <td>{{task.Reason}}</td>
                             <td>{{task.Resources}}</td>
-                            <td>{{task.Priority}}</td>
+                            <td>{{task.Priority == 1 ? "Low" : task.Priority==2 ? "Medium" : "High"}}</td>
                             <td>{{task.DueBy|date}}</td>
                             <td><button type="button" class="btn btn-default" ng-click="td.editTask($index, task)"><span class="glyphicon glyphicon-pencil"></span></button></td>
                             <td><button type="button" class="btn btn-danger" ng-click="td.deleteTask($index,task.Id)"><span class="glyphicon glyphicon-trash"></span></button></td>
                         </tr>
                     </table>
                 </div>
-                <button type="button" class="btn btn-block btn-info">Get Some Inspiration</button>
+                <button type="button" class="btn btn-block btn-info" ng-click="td.scrapeReddit()">Get Some Inspiration</button>
                 <div>
                     {{td.statusMessage}}
                 </div>
-                <pre>{{td|json}}</pre>
+                <div>
+                    <div ng-repeat="link in td.linkList">
+                        <a class="row" ng-href="{{link.LinkUrl.indexOf('/r/') > -1 ? 'https://www.reddit.com' + link.LinkUrl : link.LinkUrl }}">{{link.LinkTitle}}</a>
+                    </div>
+                </div>
+                <!--<pre>{{td|json}}</pre>-->
             </div>
         </div>
     </div>

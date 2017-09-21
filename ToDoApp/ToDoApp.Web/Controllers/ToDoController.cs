@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using ToDoApp.Web.Model.Domain;
 using ToDoApp.Web.Model.Request;
@@ -82,9 +83,11 @@ namespace ToDoApp.Web.Controllers
         }
 
         [Route("motivation"), HttpGet]
-        public HttpResponseMessage GetMotivationLinks()
+        public async Task<HttpResponseMessage> GetMotivationLinks()
         {
-            return Request.CreateResponse(HttpStatusCode.OK);
+            TasksResponse<MotivationLink> response = new TasksResponse<MotivationLink>();
+            response.Tasks = await toDoService.GetRedditPosts();
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
     }

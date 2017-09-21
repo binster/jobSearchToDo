@@ -23,7 +23,7 @@ namespace ToDoApp.Web
 
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
 
-            DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
+           DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
         }
     }
 }

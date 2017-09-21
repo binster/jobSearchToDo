@@ -17,6 +17,7 @@
         vm.statusMessage = "";
         vm.showForm = false;
         vm.taskList = [];
+        vm.linkList = [];
         vm.data = {};
         vm.index = -1;
         vm.$onInit = _init;
@@ -25,6 +26,7 @@
         vm.editTask = _editTask;
         vm.deleteTask = _deleteTask;
         vm.clearTask = _clearTask;
+        vm.scrapeReddit = _scrapeReddit;
 
         //for ui bootstraps calendar
         vm.openCal = _openCal;
@@ -133,14 +135,28 @@
         function _openCal() {
             vm.popupCal = true;
         }
+
+        //web scrape for reddit links
+        function _scrapeReddit() {
+            console.log("begin scrape");
+            toDoService.webScrape().then(_scrapeSuccess, _scrapeFail);
+        }
+
+        function _scrapeSuccess(response) {
+            console.log(response);
+            vm.linkList = response.data.Tasks;
+        }
+
+        function _scrapeFail(response) {
+            console.log(response);
+        }
     }
     //things to add : form validation
-    //toastr or popup to user to ensure successful call
+    //toastr or popup to user for successful call
     //fewer buttons
     //order by date/priority
-    //when making form, priority is a string when edit mode its an int
-    //change datetime to string?
 })();
+
 
 //Services
 (function () {
@@ -157,6 +173,7 @@
         this.postTask = _postTask;
         this.updateTask = _updateTask;
         this.deleteTask = _deleteTask;
+        this.webScrape = _webScrape;
 
         //function definitions
 
@@ -200,6 +217,16 @@
             var settings = {
                 url: "/api/toDo/" + encodeURI(taskId),
                 method: "DELETE",
+                cache: false,
+                responseType: "json"
+            };
+            return $http(settings);
+        }
+
+        function _webScrape() {
+            var settings = {
+                url: "/api/toDo/motivation",
+                method: "GET",
                 cache: false,
                 responseType: "json"
             };

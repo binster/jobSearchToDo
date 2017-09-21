@@ -8,6 +8,8 @@ using ToDoApp.Web.Data.Extension;
 using ToDoApp.Web.Model.Domain;
 using ToDoApp.Web.Model.Request;
 using ToDoApp.Web.Services.Interfaces;
+using AngleSharp;
+using System.Threading.Tasks;
 
 namespace ToDoApp.Web.Services
 {
@@ -156,8 +158,22 @@ namespace ToDoApp.Web.Services
         }
 
         //web scrape reddit's /r/getmotivated
-        public void GetRedditPosts()
+        public async Task<List<MotivationLink>> GetRedditPosts()
         {
+            var config = Configuration.Default.WithDefaultLoader();
+            var address = "https://www.reddit.com/r/GetMotivated/";
+            var document = await BrowsingContext.New(config).OpenAsync(address);
+            var cellSelector = "a";
+            var cells = document.QuerySelectorAll(cellSelector);
+            var redditLinks = cells
+                .Where(m => m.ClassList.Contains("title"))
+                .Select(m => new MotivationLink
+                {
+                    LinkTitle = m.TextContent,
+                    LinkUrl = m.GetAttribute("href")
+                })
+                .ToList();
+            return redditLinks;
 
         }
     }
