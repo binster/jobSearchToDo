@@ -26,6 +26,9 @@
         vm.deleteTask = _deleteTask;
         vm.clearTask = _clearTask;
 
+        //for ui bootstraps calendar
+        vm.openCal = _openCal;
+
         //fold
         function _init() {
             toDoService.getAllTasks()
@@ -33,6 +36,7 @@
         };
 
         function _addNewTask() {
+            vm.index = -1;
             if (vm.data.Task) {
                 vm.showForm = true;
                 vm.isNewTask = true;
@@ -41,19 +45,21 @@
             }
         }
 
-        function _submitTask() {
-            
+        function _submitTask() {    
             if (vm.index == -1) {
-                if (!vm.data.DueBy) {
-                    vm.data.DueBy = null;
-                }
+                //give default due date of tomorrow
+                //if (!vm.data.DueBy) {
+                //    vm.data.DueBy = new Date();
+                //}
                 toDoService.postTask(vm.data)
                     .then(_postSuccess, _postFail);
+            } else {
+                toDoService.updateTask(vm.data)
+                    .then(_updateSuccess, _updateFail);
             }
         }
 
         function _editTask(index, task) {
-            console.log(index + " " + task);
             vm.index = index;
             vm.data = task;
             vm.showForm = true;
@@ -69,6 +75,7 @@
 
         function _clearTask() {
             vm.data = {};
+            vm.index = -1;
             vm.showForm = false;
             vm.isNewTask = false;
         }
@@ -85,6 +92,18 @@
         function _postFail(response) {
             vm.statusMessage = "there was an error while uploading your post";
             console.log(response);
+        }
+
+        function _updateSuccess(response) {
+            console.log(response);
+            vm.taskList[vm.index] = vm.data;
+            vm.statusMessage = "updated task successfully";
+            _clearTask();
+        }
+
+        function _updateFail(response) {
+            console.log(response);
+            vm.statusMessage = "update failed";
         }
 
         function _getTaskSuccess(response) {
@@ -108,12 +127,19 @@
             console.log(response);
             vm.statusMessage = "delete failed";
         }
+
+        //for ui bootstraps calendar
+
+        function _openCal() {
+            vm.popupCal = true;
+        }
     }
     //things to add : form validation
     //toastr or popup to user to ensure successful call
     //fewer buttons
     //order by date/priority
     //when making form, priority is a string when edit mode its an int
+    //change datetime to string?
 })();
 
 //Services
@@ -129,6 +155,7 @@
         //service functions
         this.getAllTasks = _getAllTasks;
         this.postTask = _postTask;
+        this.updateTask = _updateTask;
         this.deleteTask = _deleteTask;
 
         //function definitions
@@ -153,6 +180,18 @@
                 contentType: "application/json",
                 data : taskData
             }
+            return $http(settings);
+        }
+
+        //update Task
+        function _updateTask(task) {
+            var settings = {
+                url: "/api/toDo/" + encodeURI(task.Id),
+                method: "PUT",
+                cache: false,
+                contentType: "application/json",
+                data: task
+            };
             return $http(settings);
         }
 

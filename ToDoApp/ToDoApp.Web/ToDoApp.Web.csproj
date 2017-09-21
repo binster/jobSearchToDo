@@ -175,6 +175,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ToDoController.cs" />
     <Compile Include="Data\Extension\ReaderExtensions.cs" />
+    <Compile Include="Model\Domain\MotivationLink.cs" />
     <Compile Include="Model\Domain\ScheduleItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,7 +191,11 @@
     <Compile Include="Services\ToDoService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Webpage\Content\ToDo.css" />
     <Content Include="Webpage\Content\toDo.js" />
     <Content Include="Webpage\CSS\bootstrap-theme.css" />

@@ -17,14 +17,16 @@
             </div>
             <div ng-controller="toDoController as td">
                 <div class="addForm">
-                    <div class="row addTask">
-                        <div class="col-sm-6">
-                            <form>
-                                <input type="text" class="form-control col-sm-6" ng-model="td.data.Task" placeholder="enter a new task" />
-                            </form>
+                    <div class="addTask">
+                        <div class="input-group">
+                            <input type="text" class="form-control col-sm-6" ng-model="td.data.Task" placeholder="enter a new task" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" ng-click="td.addNewTask()" ng-class="{addNewTask: vm.isNewTask}"><i class="glyphicon glyphicon-plus"></i></button>                               
+                            </span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="td.clearTask()">Clear</button>
+                            </span>                       
                         </div>
-                        <button type="button" class="btn btn-primary col-sm-2" ng-click="td.addNewTask()" ng-class="{addNewTask: vm.isNewTask}">{{vm.data.Task ? "Add Task" : "New Task"}} &nbsp;<i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-danger col-sm-2 col-sm-offset-1 clearButton" ng-click="td.clearTask()">Clear</button>
                     </div>
 
                     <div ng-if="td.showForm">
@@ -42,8 +44,13 @@
                                     <option value="3">High</option>
                                 </select>
                                 <label>Scheduled For</label>
-                                <input type="text" class="form-control" ng-model="td.data.DueBy" placeholder="When is this due by?" />
-                            </form>                          
+                                <div class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="td.data.DueBy" is-open="td.popupCal" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="td.openCal()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
                         <button type="button" class="btn btn-block btn-success submitBtn" ng-click="td.submitTask()">Submit</button>
                     </div>
@@ -64,12 +71,13 @@
                             <td>{{task.Reason}}</td>
                             <td>{{task.Resources}}</td>
                             <td>{{task.Priority}}</td>
-                            <td>{{task.DueBy}}</td>
-                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" ng-click="td.editTask($index, task)"></span></button></td>
-                            <td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" ng-click="td.deleteTask($index,task.Id)"></span></button></td>
+                            <td>{{task.DueBy|date}}</td>
+                            <td><button type="button" class="btn btn-default" ng-click="td.editTask($index, task)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                            <td><button type="button" class="btn btn-danger" ng-click="td.deleteTask($index,task.Id)"><span class="glyphicon glyphicon-trash"></span></button></td>
                         </tr>
                     </table>
                 </div>
+                <button type="button" class="btn btn-block btn-info">Get Some Inspiration</button>
                 <div>
                     {{td.statusMessage}}
                 </div>
@@ -83,7 +91,7 @@
     <script src="../../Scripts/angular.min.js"></script>
     <!-- Plugins-->
     <script src="../../Scripts/bootstrap.min.js"></script>
-    <script src="../../Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="../../Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <!-- All your code goes below here-->
     <script type="text/javascript">
 

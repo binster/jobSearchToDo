@@ -81,5 +81,11 @@ namespace ToDoApp.Web.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
+        [Route("motivation"), HttpGet]
+        public HttpResponseMessage GetMotivationLinks()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
     }
 }

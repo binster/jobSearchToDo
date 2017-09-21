@@ -127,6 +127,7 @@ namespace ToDoApp.Web.Services
                 cmd.CommandText = "dbo.ToDo_Update";
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@Id", model.Id);
                 cmd.Parameters.AddWithValue("@Task", model.Task);
                 cmd.Parameters.AddWithValue("@Reason", model.Reason);
                 cmd.Parameters.AddWithValue("@Resources", model.Resources);
@@ -152,6 +153,12 @@ namespace ToDoApp.Web.Services
 
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        //web scrape reddit's /r/getmotivated
+        public void GetRedditPosts()
+        {
+
         }
     }
 }
