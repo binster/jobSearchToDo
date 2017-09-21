@@ -12,8 +12,8 @@ namespace ToDoApp.Web.Model.Request
         public string Task { get; set; }
         public string Reason { get; set; }
         public string Resources { get; set; }
-        [Range(1,3)]
+        [Range(1, 3)]
         public int Priority { get; set; }
-        public DateTime? DueBy { get; set; } //should i set defaults here?
+        public DateTime? DueBy { get; set; }
     }
 }
