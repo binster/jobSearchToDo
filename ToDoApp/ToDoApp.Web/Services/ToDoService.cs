@@ -163,9 +163,9 @@ namespace ToDoApp.Web.Services
             var config = Configuration.Default.WithDefaultLoader();
             var address = "https://www.reddit.com/r/GetMotivated/";
             var document = await BrowsingContext.New(config).OpenAsync(address);
-            var cellSelector = "a";
-            var cells = document.QuerySelectorAll(cellSelector);
-            var redditLinks = cells
+            var selector = "a";
+            var nodes = document.QuerySelectorAll(selector);
+            var redditLinks = nodes
                 .Where(m => m.ClassList.Contains("title"))
                 .Select(m => new MotivationLink
                 {
