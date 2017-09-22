@@ -161,9 +161,9 @@ namespace ToDoApp.Web.Services
         public async Task<List<MotivationLink>> GetRedditPosts()
         {
             var config = Configuration.Default.WithDefaultLoader();
-            var address = "https://www.reddit.com/r/GetMotivated/";
+            string address = "https://www.reddit.com/r/GetMotivated/";
             var document = await BrowsingContext.New(config).OpenAsync(address);
-            var selector = "a";
+            string selector = "a";
             var nodes = document.QuerySelectorAll(selector);
             var redditLinks = nodes
                 .Where(m => m.ClassList.Contains("title"))
@@ -174,7 +174,6 @@ namespace ToDoApp.Web.Services
                 })
                 .ToList();
             return redditLinks;
-
         }
     }
 }
