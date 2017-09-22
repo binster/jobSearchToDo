@@ -5,4 +5,4 @@ Simple to-do list
 Just click show inspiration to get some links
 
 
-### Built with AngularJS, .NET, TSQL
+### Built with AngularJS, .NET, SQL
