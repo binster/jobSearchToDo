@@ -85,7 +85,7 @@
 
         function _postSuccess(response) {
             console.log(response);
-            vm.data.Id = response.data.item;            
+            vm.data.Id = response.data.Task;            
             vm.taskList.push(vm.data);
             toastr.success("Added New Task!");
             _clearTask();

@@ -67,7 +67,7 @@
                             <th></th>
                             <th></th>
                         </tr>
-                        <tr ng-repeat="task in td.taskList">
+                        <tr ng-repeat="task in td.taskList | orderBy:'DueBy' ">
                             <td>{{task.Task}}</td>
                             <td>{{task.Reason}}</td>
                             <td>{{task.Resources}}</td>
