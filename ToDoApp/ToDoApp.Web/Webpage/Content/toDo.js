@@ -100,6 +100,8 @@
         function _updateSuccess(response) {
             console.log(response);
             vm.statusMessage = "updated task successfully";
+            vm.taskList[vm.index] = vm.data;
+            vm.index = -1;
             _clearTask();
         }
 
