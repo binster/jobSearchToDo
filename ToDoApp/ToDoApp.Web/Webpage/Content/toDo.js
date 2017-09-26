@@ -6,15 +6,14 @@
         .controller("toDoController", toDoController);
     
     //controller injections
-    toDoController.$inject = ["toDoService"];
+    toDoController.$inject = ["toDoService", "toastr"];
 
-    function toDoController(toDoService) {
+    function toDoController(toDoService, toastr) {
 
         //admin
         var vm = this;
 
         //view model
-        vm.statusMessage = "";
         vm.showForm = false;
         vm.taskList = [];
         vm.linkList = [];
@@ -88,18 +87,18 @@
             console.log(response);
             vm.data.Id = response.data.item;            
             vm.taskList.push(vm.data);
-            vm.statusMessage = "post success";
+            toastr.success("Added New Task!");
             _clearTask();
         }
 
         function _postFail(response) {
-            vm.statusMessage = "there was an error while uploading your post";
+            toastr.error ("there was an error while uploading your post");
             console.log(response);
         }
 
         function _updateSuccess(response) {
             console.log(response);
-            vm.statusMessage = "updated task successfully";
+            toastr.info("updated task successfully");
             vm.taskList[vm.index] = vm.data;
             vm.index = -1;
             _clearTask();
@@ -107,7 +106,7 @@
 
         function _updateFail(response) {
             console.log(response);
-            vm.statusMessage = "update failed";
+            toastr.error("update failed");
         }
 
         function _getTaskSuccess(response) {
@@ -117,19 +116,19 @@
 
         function _getTaskFail(response) {
             console.log(response);
-            vm.statusMessage = "there was an error in the database";
+            toastr.warning("there was an error in the database");
         }
 
         function _deleteSuccess(response) {
             console.log(response);
             vm.taskList.splice(vm.index, 1);
             vm.index = -1;
-            vm.statusMessage = "successful removal of task";        
+            toastr.info("successful removal of task");        
         }
 
         function _deleteFail(response) {
             console.log(response);
-            vm.statusMessage = "delete failed";
+            toastr.warning("delete failed");
         }
 
         //for ui bootstraps calendar

@@ -7,6 +7,7 @@
     <title>To Finish</title>
     <!--Bootstrap css-->
     <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../CSS/angular-toastr.min.css" rel="stylesheet" />
     <link href="ToDo.css" rel="stylesheet" />
 </head>
 <body>
@@ -79,9 +80,6 @@
                 </div>
                 <button type="button" class="btn btn-block btn-info" ng-click="td.scrapeReddit()">Get Some Inspiration</button>
                 <div>
-                    {{td.statusMessage}}
-                </div>
-                <div>
                     <ul>
                         <li ng-repeat="link in td.linkList">
                             <a ng-href="{{link.LinkUrl.indexOf('/r/') > -1 ? 'https://www.reddit.com' + link.LinkUrl : link.LinkUrl }}">{{link.LinkTitle}}</a>
@@ -99,13 +97,15 @@
     <!-- Plugins-->
     <script src="../../Scripts/bootstrap.min.js"></script>
     <script src="../../Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="../../Scripts/angular-animate.min.js"></script>
+    <script src="../../Scripts/angular-toastr.tpls.min.js"></script>
     <!-- All your code goes below here-->
     <script type="text/javascript">
 
         //Instantiate the app
         (function () {
             "use strict";
-            angular.module("toDoApp", ['ui.bootstrap']);
+            angular.module("toDoApp", ['ui.bootstrap', 'ngAnimate', 'toastr']);
         })();
 
     </script>

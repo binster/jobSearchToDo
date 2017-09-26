@@ -192,12 +192,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-toastr.tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Webpage\Content\ToDo.css" />
     <Content Include="Webpage\Content\toDo.js" />
+    <Content Include="Webpage\CSS\angular-toastr.min.css" />
     <Content Include="Webpage\CSS\bootstrap-theme.css" />
     <Content Include="Webpage\CSS\bootstrap-theme.min.css" />
     <Content Include="Webpage\CSS\bootstrap.css" />
