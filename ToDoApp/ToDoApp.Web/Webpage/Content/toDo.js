@@ -41,18 +41,13 @@
             vm.index = -1;
             if (vm.data.Task) {
                 vm.showForm = true;
-                vm.isNewTask = true;
             } else {
                 console.log("put in a Task Name");
             }
         }
 
         function _submitTask() {    
-            if (vm.index == -1) {
-                //give default due date of tomorrow
-                //if (!vm.data.DueBy) {
-                //    vm.data.DueBy = new Date();
-                //}
+            if (vm.index === -1) {
                 toDoService.postTask(vm.data)
                     .then(_postSuccess, _postFail);
             } else {
@@ -63,7 +58,15 @@
 
         function _editTask(index, task) {
             vm.index = index;
-            vm.data = task;
+            vm.data = {
+                Id: task.Id,
+                Task: task.Task,
+                Reason: task.Reason,
+                Resources: task.Resources,
+                Priority:  String(task.Priority),
+                DueBy: new Date(task.DueBy)
+
+            }
             vm.showForm = true;
 
         }
@@ -79,12 +82,10 @@
             vm.data = {};
             vm.index = -1;
             vm.showForm = false;
-            vm.isNewTask = false;
         }
 
         function _postSuccess(response) {
             console.log(response);
-            debugger;
             vm.data.Id = response.data.item;            
             vm.taskList.push(vm.data);
             vm.statusMessage = "post success";
@@ -98,7 +99,6 @@
 
         function _updateSuccess(response) {
             console.log(response);
-            vm.taskList[vm.index] = vm.data;
             vm.statusMessage = "updated task successfully";
             _clearTask();
         }
@@ -203,7 +203,7 @@
         //update Task
         function _updateTask(task) {
             var settings = {
-                url: "/api/toDo/" + encodeURI(task.Id),
+                url: "/api/toDo/" + task.Id,
                 method: "PUT",
                 cache: false,
                 contentType: "application/json",

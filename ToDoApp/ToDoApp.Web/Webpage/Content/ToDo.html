@@ -21,7 +21,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control col-sm-6" ng-model="td.data.Task" placeholder="enter a new task" />
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-primary" ng-click="td.addNewTask()" ng-class="{addNewTask: vm.isNewTask}"><i class="glyphicon glyphicon-plus"></i></button>                               
+                                <button type="button" class="btn btn-primary" ng-click="td.addNewTask()"><i class="glyphicon glyphicon-plus"></i></button>                               
                             </span>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="td.clearTask()">Clear</button>
@@ -45,7 +45,7 @@
                                 </select>
                                 <label>Scheduled For</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="td.data.DueBy" is-open="td.popupCal" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="td.data.DueBy" is-open="td.popupCal" close-text="Close" />
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default" ng-click="td.openCal()"><i class="glyphicon glyphicon-calendar"></i></button>
                                     </span>
