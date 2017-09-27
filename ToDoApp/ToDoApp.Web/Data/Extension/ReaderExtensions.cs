@@ -13,7 +13,8 @@ namespace ToDoApp.Web.Data.Extension
         //Get a string from SQL and trim it
         public static string GetSQLString(this IDataReader reader, Int32 index, bool trim = true)
         {
-            if (reader[index] != null && reader[index] != DBNull.Value)
+            var readerValue = reader[index];
+            if (readerValue != null && readerValue != DBNull.Value)
             {
                 if (trim)
                     return reader.GetString(index).Trim();
@@ -29,7 +30,8 @@ namespace ToDoApp.Web.Data.Extension
         //Get int from SQL and set equal to 0 if value is null
         public static int GetSQLInt(this IDataReader reader, Int32 index)
         {
-            if (reader[index] != null && reader[index] != DBNull.Value)
+            var readerValue = reader[index];
+            if (readerValue != null && readerValue != DBNull.Value)
             {
                 return reader.GetInt32(index);
             }
@@ -42,7 +44,8 @@ namespace ToDoApp.Web.Data.Extension
         //Get int from SQL and set equal to null if SQL column IS NULL
         public static int? GetSQLInt32Nullable(this IDataReader reader, Int32 index)
         {
-            if (reader[index] != null && reader[index] != DBNull.Value)
+            var readerValue = reader[index];
+            if (readerValue != null && readerValue != DBNull.Value)
             {
                 return reader.GetInt32(index);
             }
@@ -55,7 +58,8 @@ namespace ToDoApp.Web.Data.Extension
         //Get DateTime from SQL 
         public static DateTime GetSQLDateTime(this IDataReader reader, Int32 index)
         {
-            if (reader[index] != null && reader[index] != DBNull.Value)
+            var readerValue = reader[index];
+            if (readerValue != null && readerValue != DBNull.Value)
             {
                 return reader.GetDateTime(index);
             }
@@ -68,7 +72,8 @@ namespace ToDoApp.Web.Data.Extension
         //Get Nullable DateTime from SQL
         public static DateTime? GetSQLDateTimeNullable(this IDataReader reader, Int32 index)
         {
-            if (reader[index] != null && reader[index] != DBNull.Value)
+            var readerValue = reader[index];
+            if (readerValue != null && readerValue != DBNull.Value)
             {
                 return reader.GetDateTime(index);
             }

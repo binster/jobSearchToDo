@@ -111,7 +111,17 @@
 
         function _getTaskSuccess(response) {
             console.log(response);
-            vm.taskList = response.data.Tasks;
+            //vm.taskList = response.data.Tasks;
+            response.data.Tasks.forEach(taskResp => {
+                vm.taskList.push({
+                    Id: taskResp.Id,
+                    Task: taskResp.Task,
+                    Reason: taskResp.Reason,
+                    Resources: taskResp.Resources,
+                    Priority: taskResp.Priority,
+                    DueBy: new Date(taskResp.DueBy)
+                });
+            });
         };
 
         function _getTaskFail(response) {
